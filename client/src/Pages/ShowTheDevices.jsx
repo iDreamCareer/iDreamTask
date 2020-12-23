@@ -5,99 +5,61 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const ShowTheDevices = () => {
-  // const [Data, setData] = useState([]);
+  const [Data, setData] = useState([]);
 
-  // const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
-  // const URL = "https://i-dream-task.herokuapp.com/";
+  const URL = "https://i-dream-task.herokuapp.com/fetchdata";
 
-  // useEffect(() => {
-  //   axios
-  //     .get(PROXY_URL + URL)
-  //     .then((res) => {
-  //       // console.log("Fetcheddata ====>>>>> ", res.data.data.purchased_services);
+  useEffect(() => {
+    axios
+      .get(URL)
+      .then((res) => {
+        console.log("Fetcheddata ====>>>>> ", res.data.data);
 
-  //       const data = res.data.data.purchased_services;
-  //       const length = data.length;
+        const length = res.length;
 
-  //       for (let i = 0; i < length; i++) {
-  //         const addLength =
-  //           data[i].purchased_office_template.purchased_office_services.length;
-  //         // console.log("data.name ", data[i].name);
-  //         for (let j = 0; j < addLength; j++) {
-  //           if (
-  //             data[i].purchased_office_template.purchased_office_services[j]
-  //               .service_selected !== null ||
-  //             undefined
-  //           ) {
-  //             // console.log("Purchased Services : ===== > \n");
-  //             // console.log(
-  //             //   i + " " + j + " ",
-  //             //   data[i].purchased_office_template.purchased_office_services[j]
-  //             // );
+        let newDATA = [];
 
-  //             data[i].purchased_office_template.purchased_office_services[
-  //               j
-  //             ].mainServiceName = data[i].name;
+        for (let i = 0; i < length; i++) {
+          const addLength =
+            res[i].purchased_office_template.purchased_office_services.length;
+          // console.log("res.name ", res[i].name);
+          for (let j = 0; j < addLength; j++) {
+            if (
+              res[i].purchased_office_template.purchased_office_services[j]
+                .service_selected !== null ||
+              undefined
+            ) {
+              // console.log("Purchased Services : ===== > \n");
+              // console.log(
+              //   i + " " + j + " ",
+              //   res[i].purchased_office_template.purchased_office_services[j]
+              // );
 
-  //             newPDATA.push(
-  //               data[i].purchased_office_template.purchased_office_services[j]
-  //             );
+              res[i].purchased_office_template.purchased_office_services[
+                j
+              ].mainServiceName = res[i].name;
 
-  //             total.current =
-  //               total.current +
-  //               Number(
-  //                 data[i].purchased_office_template.purchased_office_services[j]
-  //                   .price
-  //               );
-  //           }
+              newDATA.push(
+                res[i].purchased_office_template.purchased_office_services[j]
+              );
+            }
+          }
+        }
 
-  //           if (
-  //             data[i].purchased_office_template.purchased_office_services[j]
-  //               .service_selected === null ||
-  //             undefined
-  //           ) {
-  //             // console.log("Additional Services : ===== > \n");
+        setData(newDATA);
+      })
+      .catch((err) => {
+        console.error("Error occured! ", err);
+        alert(
+          "Can't FETCH Right Now , Because of Network Error , Please Connect Soon ... "
+        );
+      });
 
-  //             // console.log(
-  //             //   i + " " + j + " ",
-  //             //   data[i].purchased_office_template.purchased_office_services[j]
-  //             // );
+    // console.log("Purchased Services : ===== >  \n", pData, "\n");
+    // console.log("Additional Services : ===== > \n", aData, "\n");
+  }, []);
 
-  //             data[i].purchased_office_template.purchased_office_services[
-  //               j
-  //             ].mainServiceName = data[i].name;
-
-  //             newADATA.push(
-  //               data[i].purchased_office_template.purchased_office_services[j]
-  //             );
-
-  //             // setaData(
-  //             //   data[i].purchased_office_template.purchased_office_services[j]
-  //             // );
-  //           }
-  //         }
-  //       }
-  //       // console.log("length ", length);
-  //       // console.log(
-  //       //   "length 1 ",
-  //       //   data[i].purchased_office_template.purchased_office_services.length
-  //       // );
-
-  //       setpData(newPDATA);
-  //       setaData(newADATA);
-  //     })
-  //     .catch((err) => {
-  //       console.error("Error occured! ", err);
-  //       alert(
-  //         "Can't FETCH Right Now , Because of Network Error , Please Connect Soon ... "
-  //       );
-  //     });
-
-  //   // console.log("Purchased Services : ===== >  \n", pData, "\n");
-  //   // console.log("Additional Services : ===== > \n", aData, "\n");
-  // }, []);
-
-  return <div className=""></div>;
+  return <div className="">hlo</div>;
 };
 
 export default ShowTheDevices;

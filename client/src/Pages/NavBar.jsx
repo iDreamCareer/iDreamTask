@@ -9,12 +9,12 @@ function NavBar() {
 
   return (
     <>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <Link class="navbar-brand text-dark" to="/">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <Link className="navbar-brand text-dark" to="/">
           Ck Task
         </Link>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -22,32 +22,32 @@ function NavBar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
         <div
-          class="collapse navbar-collapse my-2 my-lg-0"
+          className="collapse navbar-collapse my-2 my-lg-0"
           id="navbarSupportedContent"
         >
-          <ul class="navbar-nav ">
-            <li class="nav-item "></li>
-            <li class="nav-item ">
-              <Link class="nav-link" to="/showdevices">
+          <ul className="navbar-nav ">
+            <li className="nav-item "></li>
+            <li className="nav-item ">
+              <Link className="nav-link" to="/showdevices">
                 Show_Devices
               </Link>
             </li>
-            <li class="nav-item ">
-              <Link class="nav-link" to="#">
+            <li className="nav-item ">
+              <Link className="nav-link" to="#">
                 Link2
               </Link>
             </li>
-            <li class="nav-item ">
-              <Link class="nav-link" to="#">
+            <li className="nav-item ">
+              <Link className="nav-link" to="#">
                 Link3
               </Link>
             </li>
-            <li class="nav-item ">
-              <Link class="nav-link" to="#">
+            <li className="nav-item ">
+              <Link className="nav-link" to="#">
                 Link4
               </Link>
             </li>

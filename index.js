@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 
 app.use((req, res, next) => {
-  console.log("Requested Url Is : \n", req.url);
+  console.log("Requested Url Is : ", req.url);
   next();
 });
 
@@ -40,10 +40,10 @@ app.get("/", (req, res) => {
 app.get("/fetchdata", async function (req, res) {
   try {
     const data = await find("events", {});
-    console.log("data", data);
-    res.json({ data: data });
+    // console.log("data", data);
+    res.send(data);
   } catch (err) {
-    console.log("There is some error : ", err);
+    // console.log("There is some error : ", err);
     return res.send(
       "There Is Some Error Fetching The Data ! Please Try Again."
     );
