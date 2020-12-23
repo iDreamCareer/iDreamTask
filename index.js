@@ -15,7 +15,7 @@ app.use((req, res, next) => {
   next();
 });
 
-const find = (name, query, hint = {}, sort = {}, limit = 1000) => {
+const find = (name, query, hint = {}, sort = {}, limit = 10) => {
   return new Promise((resolve, reject) => {
     mongoose.connection.db.collection(name, (err, res) => {
       if (err) reject(err);
