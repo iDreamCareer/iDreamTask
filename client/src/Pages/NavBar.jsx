@@ -9,7 +9,7 @@ function NavBar() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav className="navbar navbar-expand-lg navbar-dark ">
         <Link className="navbar-brand text-dark" to="/">
           Ck Task
         </Link>
@@ -37,18 +37,13 @@ function NavBar() {
               </Link>
             </li>
             <li className="nav-item ">
-              <Link className="nav-link" to="#">
-                Link2
+              <Link className="nav-link" to="/noofclicks">
+                No_Of_Clicks
               </Link>
             </li>
             <li className="nav-item ">
-              <Link className="nav-link" to="#">
-                Link3
-              </Link>
-            </li>
-            <li className="nav-item ">
-              <Link className="nav-link" to="#">
-                Link4
+              <Link className="nav-link" to="/journeyscores">
+                Journey_Scores
               </Link>
             </li>
           </ul>

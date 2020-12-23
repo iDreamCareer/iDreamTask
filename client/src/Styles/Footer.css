@@ -1,7 +1,5 @@
 .Footer {
-  position: fixed;
-  bottom: 0px;
   width: 100%;
   margin: 10px 0px 0px 0px;
-  background: white;
+  background: rgb(255, 174, 174);
 }

@@ -1,0 +1,16 @@
+.barparent {
+  margin: auto;
+  width: 70%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .barparent {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .barparent {
+    width: 100%;
+  }
+}
