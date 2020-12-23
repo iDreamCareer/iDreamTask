@@ -33,7 +33,7 @@ const find = (name, query, hint = {}, sort = {}, limit = 10) => {
 app.get("/", (req, res) => {
   res.json({
     message: "Go To Another Route To See Productive Result,",
-    Next_Route: "http://localhost:3000/fetchdata",
+    Next_Route: "https://i-dream-task.herokuapp.com/fetchdata",
   });
 });
 
@@ -54,8 +54,8 @@ app.use((req, res, next) => {
   res.json({
     status_code: 404,
     error: `YOU did Something WRONG ! Sorry, Try Again !`,
-    Next_Route1: "http://localhost:3000/",
-    Next_Route2: "http://localhost:3000/fetchdata",
+    Next_Route1: "https://i-dream-task.herokuapp.com/",
+    Next_Route2: "https://i-dream-task.herokuapp.com/fetchdata",
   });
   next();
 });
