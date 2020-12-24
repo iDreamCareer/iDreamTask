@@ -3,11 +3,11 @@ import { Pie } from "react-chartjs-2";
 import { RiseLoader } from "react-spinners";
 import { css } from "@emotion/core";
 
-import "../Styles/showDetails.css";
-
 import axios from "axios";
 
-const Home = (props) => {
+import "../Styles/showDetails.css";
+
+const ShowDevices = (props) => {
   const [totalsam, settotalsam] = useState(0);
   const [totalapp, settotalapp] = useState(0);
   const [totalone, settotalone] = useState(0);
@@ -136,4 +136,4 @@ const Home = (props) => {
   );
 };
 
-export default Home;
+export default ShowDevices;
