@@ -1,35 +1,75 @@
 import React, { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
+import { RiseLoader } from "react-spinners";
+import { css } from "@emotion/core";
 
 import "../Styles/showDetails.css";
 
 import axios from "axios";
 
 const Home = (props) => {
-  const [Data, setData] = useState([]);
-  //   const [chartData, setchartData] = useState({});
+  const [totalsam, settotalsam] = useState(0);
+  const [totalapp, settotalapp] = useState(0);
+  const [totalone, settotalone] = useState(0);
+
+  const [samLabel, setsamLabel] = useState("");
+  const [appLabel, setappLabel] = useState("");
+  const [OneLabel, setOneLabel] = useState("");
+
+  const [HaveToLoad, setHaveToLoad] = useState(false);
+
+  let newDATASamsung = [];
+  let newDATAApple = [];
+  let newDATAOnePlus = [];
 
   const URL = "https://i-dream-task.herokuapp.com/fetchdata";
 
+  const override = css`
+    display: block;
+    margin: 400px auto;
+    border-color: red;
+  `;
+
   useEffect(() => {
+    setHaveToLoad(true);
     axios
       .get(URL)
       .then((res) => {
         // console.log("Fetcheddata ====>>>>> ", res.data[2].deviceDetails);
+        setHaveToLoad(false);
 
         const length = res.data.length;
 
-        let newDATA = [];
+        let query;
 
+        // console.log("newDATA.length ", newDATA.length);
         for (let i = 0; i < length; i++) {
-          if (res.data[i].deviceDetails && res.data[i].deviceDetails.vendor) {
-            console.log("result by query ==>> ", res.data[i].deviceDetails);
+          query = res.data[i].deviceDetails;
 
-            // newDATA.push(res.data[i].deviceDetails);
+          if (query && query.vendor && query.deviceDetails !== "none") {
+            if (query.vendor === "Apple") {
+              newDATAApple.push(res.data[i]);
+            }
+            if (query.vendor === "Samsung") {
+              newDATASamsung.push(res.data[i]);
+            }
+            if (query.vendor === "OnePlus") {
+              newDATAOnePlus.push(res.data[i]);
+            }
           }
         }
 
-        setData(newDATA);
+        // console.log("newDATAApple \n ", newDATAApple);
+        // console.log("newDATASamsung \n ", newDATASamsung);
+        // console.log("newDATAOnePlus \n ", newDATAOnePlus);
+
+        setsamLabel(newDATASamsung[0].deviceDetails.vendor);
+        setappLabel(newDATAApple[0].deviceDetails.vendor);
+        setOneLabel(newDATAOnePlus[0].deviceDetails.vendor);
+
+        settotalsam(newDATASamsung.length);
+        settotalapp(newDATAApple.length);
+        settotalone(newDATAOnePlus.length);
       })
       .catch((err) => {
         console.error("Error occured! ", err);
@@ -37,15 +77,20 @@ const Home = (props) => {
           "Can't FETCH Right Now , Because of Network Error , Please Connect Soon ... "
         );
       });
-
-    // console.log("Purchased Services : ===== >  \n", pData, "\n");
-    // console.log("Additional Services : ===== > \n", aData, "\n");
   }, []);
 
   return (
     <div className="showTheDetailsParent">
-      {/* {console.log("Data", Data)} */}
-      {/* {console.log("chartData", chartData)} */}
+      {HaveToLoad === true && (
+        <div className="Spinner-loder">
+          <RiseLoader
+            css={override}
+            color="rgb(255, 174, 174)"
+            size={50}
+            loading
+          />
+        </div>
+      )}
       <h3>
         Here You Are Seeing Device Details , Which Are In Activity On Our
         platform :
@@ -53,18 +98,11 @@ const Home = (props) => {
       <div>
         <Pie
           data={{
-            labels: [
-              "Boston",
-              "Worcester",
-              "Springfield",
-              "Lowell",
-              "Cambridge",
-              "New Bedford",
-            ],
+            labels: [samLabel, appLabel, OneLabel],
             datasets: [
               {
                 label: "Population",
-                data: [617594, 181045, 153060, 106519, 105162, 95072],
+                data: [totalsam, totalapp, totalone],
                 backgroundColor: [
                   "rgba(255, 99, 132, 0.6)",
                   "rgba(54, 162, 235, 0.6)",
@@ -83,7 +121,7 @@ const Home = (props) => {
             maintainAspectRatio: false,
             title: {
               display: true,
-              text: `"Largest Cities In " + "City"`,
+              text: `All Devices`,
               fontSize: 25,
             },
 
